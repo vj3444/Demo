@@ -1,51 +1,66 @@
 package com.demo.base;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class B {
 
 	public static void main(String[] args) {
 
-		Integer sum = 0;
-
-		String s = "geeksfoAAA258rg689eeks$#$%12345678";
+//		key-rollNumber
+//		value-name;
 		
+		HashMap<Integer, String> map = new HashMap<Integer, String>();
 		
-
-		char ch[] = s.toCharArray();
-
-		StringBuilder sb = new StringBuilder();
-
-		for (int i = 0; i < ch.length; i++) {
-
-			if (Character.isDigit(ch[i])) {
+		map.put(1, "Vivek");
+		map.put(2, "Rajat");
+		map.put(3, "Jaiswal");
+		map.put(4, "Chauhan");
+		map.put(5,"I live in India");
+		
+		for(Map.Entry<Integer, String> entry:map.entrySet()) {
+			
+			if(entry.getKey()==5) {
+				String str = entry.getValue();
 				
-				sb.append(ch[i]);
+				String st[] = str.split(" ");
+				int i=1;
+				StringBuffer sb1 = new StringBuffer();
+				for(i=1;i<st.length-1;i++) {
+					char ch[] = st[i].toCharArray();
+					for(int j=ch.length-1;j>=i;j--) {
+						sb1.append(ch[j]).toString();
+					}
+					System.out.print(sb1);
+					System.out.println();
+					i++;
+					sb1=null;
+				}
 			}
-		}
-		
-		for (char c : ch) {
-			if (Character.isDigit(c)) {
-				sb.append(c);
+			
+//			System.out.println("Roll Number-->"+entry.getKey()+"  "+"Name-->"+entry.getValue());
+			StringBuffer sb = new StringBuffer();
+			
+			if(entry.getKey()%2!=0) {
+				
+				String s = entry.getValue();
+				
+				char ch[] = s.toCharArray();
+				for(int i=ch.length-1;i>=0;i--) {
+//					System.out.print(ch[i]);
+					sb.append(ch[i]);
+					int rollNumber = entry.getKey();
+					map.put(rollNumber, sb.toString());
+				}
+				
 			}
-		}
-		
-		System.out.println(sb);
-		
-		String s2 = sb.toString();
-		for(int i = 0;i<s2.length();i++) {
+			System.out.println();
 			
-//			sum = sum+Integer.valueOf(Character.toString(ch[i]));
-			
-			sum = sum+Integer.parseInt(Character.toString(s2.charAt(i)));
-						
+			sb=null;
+			System.out.println("Roll Number-->"+entry.getKey()+"  "+"Name-->"+entry.getValue());
 			
 		}
-//		}
-//		if (sb.length() > 0) {
-//			sum += Integer.parseInt(sb.toString());
-//
-//			System.out.println(sum);
-//		}
-		System.out.println(sum);
 		
 	}
 }
